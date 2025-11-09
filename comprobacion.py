@@ -1,5 +1,10 @@
 import sys
 def main():
+    if len(sys.argv) < 2:
+        print("Error: Se necesita una IP para ejecutar el codigo")
+        print("Ejecutalo así: python comprobacion.py dirección_IP")
+        sys.exit(1)
+
     ip = sys.argv[1]
     ip = ip.split(".")
 
@@ -29,10 +34,13 @@ def main():
             clase = "C"
         elif primer_num >= 224 and primer_num <= 239:
             clase = "D"
-        elif primer_num >= 240 and primer_num <= 254:
+        elif primer_num >= 240 and primer_num <= 255:
             clase = "E"
 
-    print(f"La IP es válida y su clase es: {clase}")
+    if clase == "":
+        print("Error: dirección IP no pertenece a ninguna clase conocida")
+    else:
+        print(f"La IP es válida y su clase es: {clase}")
 
 if __name__ == "__main__":
     main()
